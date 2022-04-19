@@ -24,10 +24,10 @@ public class AskCtrl {
 	}
 	
 	@PostMapping("/test/client")
-	public String postClientForm(@ModelAttribute("request") CustomerRequest request) {
+	public String postClientForm(Model model,@ModelAttribute("request") CustomerRequest request) {
 		WsResponse response = service.callSoapServer(request);
-		System.out.println(response.isIsEligeble());
-		return "ask";
+		model.addAttribute("response", response);
+		return "response";
 	}
 
 }
